@@ -2,10 +2,16 @@ package com.example.smartbankapplication.model
 
 data class Account(
 
-    val id: Int,
+    val accountNumber: String,
 
-    val AccountName: String,
+    val owner: User, //Object Composition
 
-    val userId: Int,
+    val accountType: AccountType,
 
-    )
+    var balance: Double, //var means  mutable(changeable)
+
+    val currency: String,  // val --> read-only 
+
+    val isActive: Boolean
+
+)

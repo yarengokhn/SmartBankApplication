@@ -11,9 +11,7 @@ data class User(
 
     val phoneNumber: String,
 
-    val age: String,
-
-    val balance: Double,
+    val age: Int,
 
     val isActive: Boolean
 
