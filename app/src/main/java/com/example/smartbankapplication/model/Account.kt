@@ -10,8 +10,10 @@ data class Account(
 
     var balance: Double, //var means  mutable(changeable)
 
-    val currency: String,  // val --> read-only 
+    val currency: String,  // val --> read-only
 
-    val isActive: Boolean
+    val isActive: Boolean,
+
+    val transactions: MutableList<Transaction> = mutableListOf()
 
 )

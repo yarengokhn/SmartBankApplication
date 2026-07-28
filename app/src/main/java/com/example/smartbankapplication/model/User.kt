@@ -7,13 +7,19 @@ data class User(
 
     val lastName: String,
 
-    val email: String,
+    val email: String?,
 
-    val phoneNumber: String,
+    val phoneNumber: String?,
 
     val age: Int,
 
     val isActive: Boolean
 
 
-)
+) {
+    fun getDisplayEmail(): String {
+        return email ?: "No email available"
+    }
+}
+
+
