@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,7 +32,21 @@ fun DashboardScreen(
 ) {
 
 
-    val uiState = viewModel.uiState
+    val uiState by viewModel.uiState.collectAsState()
+
+    if (uiState.isLoading) {
+        Text(
+            text = "Loading ..."
+        )
+    }
+
+    uiState.error?.let {
+
+        Text(
+            text = it
+        )
+
+    }
 
 
     var amountText by remember {
