@@ -8,12 +8,12 @@ data class Account(
 
     val accountType: AccountType,
 
-    var balance: Double, //var means  mutable(changeable)
+    val balance: Double,
 
     val currency: String,  // val --> read-only
 
     val isActive: Boolean,
 
-    val transactions: MutableList<Transaction> = mutableListOf()
-
+    // eski yaklaşım val transactions: MutableList<Transaction> = mutableListOf()
+    val transactions: List<Transaction> = emptyList()
 )

@@ -32,9 +32,9 @@ fun TransactionItem(
 
     val amountText =
         if (isDeposit) {
-            "+ ${transaction.amount} TL"
+            "+ %.2f TL".format(transaction.amount)
         } else {
-            "- ${transaction.amount} TL"
+            "- %.2f TL".format(transaction.amount)
         }
 
     val amountColor =

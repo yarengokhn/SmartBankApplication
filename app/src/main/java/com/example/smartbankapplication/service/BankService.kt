@@ -11,54 +11,57 @@ class BankService {
     fun deposit(
         account: Account,
         amount: Double
-    ): Boolean {
+    ): Account? {
 
         if (amount <= 0) {
-            return false
+            return null
         }
         if (!account.isActive) {
-            return false
+            return null
         }
 
-        account.balance += amount
 
-        account.transactions.add(
-            Transaction(
-                id = account.transactions.size + 1,
-                amount = amount,
-                type = TransactionType.DEPOSIT,
-                description = "Money deposited"
-            )
+        val transaction = Transaction(
+            id = account.transactions.size + 1,
+            amount = amount,
+            type = TransactionType.DEPOSIT,
+            description = "Money deposited"
         )
-        return true
+
+        return account.copy(
+            balance = account.balance + amount,
+            transactions = account.transactions + transaction
+
+        )
     }
 
     fun withdraw(
         account: Account,
         amount: Double
-    ): Boolean {
+    ): Account? {
         if (amount <= 0) {
-            return false
+            return null
         }
         if (!account.isActive) {
-            return false
+            return null
         }
         if (account.balance < amount) {
-            return false
+            return null
         }
 
-        account.balance -= amount
-
-        account.transactions.add(
+        val transaction =
             Transaction(
                 id = account.transactions.size + 1,
                 amount = amount,
                 type = TransactionType.WITHDRAW,
                 description = "Money withdrawn"
             )
-        )
 
-        return true
+
+        return account.copy(
+            balance = account.balance - amount,
+            transactions = account.transactions + transaction
+        )
     }
 
     fun getDepositTransactions(
